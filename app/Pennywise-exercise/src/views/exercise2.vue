@@ -16,19 +16,32 @@
                 v-for="index in BalloonCount"
                 :key="index">
             </div>
+            
+            
         </div>
+        <button @click="revealMessage()">Comprobar la casa</button>
+        <div v-if="showMessage">
+                <p>Todos flotan aquí</p>
+            </div>
+        <div v-else></div>
     </div>
     
     <router-link :to="{ name: 'Home' }">Go back</router-link>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from "vue";;
 
     export default defineComponent ({
         data() {
             return {
+                showMessage: false,
                 BalloonCount: 1 as number,
+            }
+        },
+        methods: {
+            revealMessage() {
+                this.showMessage = this.BalloonCount >= 10;
             }
         }
     });
